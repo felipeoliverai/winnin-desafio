@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    image: winnin-rag-qa:latest
+    container_name: winnin-rag-api
+    env_file:
+      - .env
+    environment:
+      CHROMA_PATH: /app/data/chroma
+      PDF_DIR: /app/data/pdfs
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
